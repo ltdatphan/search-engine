@@ -17,6 +17,7 @@ Flask==2.2.2
 Flask-Cors==3.0.10
 Flask-RESTful==0.3.9
 fonttools==4.37.4
+gunicorn==20.1.0
 idna==3.4
 ijson==3.1.4
 importlib-metadata==5.1.0
@@ -31,7 +32,7 @@ jupyter-core==4.11.1
 jupyter_client==7.3.5
 kiwisolver==1.4.4
 MarkupSafe==2.1.1
-matplotlib==3.5.3
+matplotlib==3.6.2
 matplotlib-inline==0.1.6
 mypy-extensions==0.4.3
 nest-asyncio==1.5.6

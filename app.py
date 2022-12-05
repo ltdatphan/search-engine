@@ -10,6 +10,11 @@ app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 CORS(app)
 
+filehandler = open(Path("./trained_models/bm25_model.obj"), "rb")
+bm25_model = pickle.load(filehandler)
+filehandler = open(Path("./trained_models/nb_model.obj"), "rb")
+nb_model = pickle.load(filehandler)
+
 
 @app.route("/", methods=["GET"])
 def home():
@@ -42,9 +47,9 @@ def search():
     return jsonify({"query": query, "result": results})
 
 
-if __name__ == "__main__":
-    filehandler = open(Path("./trained_models/bm25_model.obj"), "rb")
-    bm25_model = pickle.load(filehandler)
-    filehandler = open(Path("./trained_models/nb_model.obj"), "rb")
-    nb_model = pickle.load(filehandler)
-    app.run()
+# if __name__ == "__main__":
+#     # filehandler = open(Path("./trained_models/bm25_model.obj"), "rb")
+#     # bm25_model = pickle.load(filehandler)
+#     # filehandler = open(Path("./trained_models/nb_model.obj"), "rb")
+#     # nb_model = pickle.load(filehandler)
+#     app.run()
