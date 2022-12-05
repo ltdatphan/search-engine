@@ -8,14 +8,7 @@ from flask_cors import CORS
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
-CORS(
-    app,
-    resources={
-        r"/search": {
-            "origins": "https://inquisitive-bunny-f80acf.netlify.app/",
-        }
-    },
-)
+CORS(app, resources={r"/search": {"origins": "https://inquisitive-bunny-f80acf.netlify.app/"}, r"/": {"origins": "*"}})
 
 filehandler = open(Path("./trained_models/bm25_model.obj"), "rb")
 bm25_model = pickle.load(filehandler)
