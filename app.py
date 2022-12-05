@@ -4,11 +4,11 @@ import pickle
 from pathlib import Path
 from BM25_custom import BM25OkapiCustom
 from helper import tokenize, remove_stopword
-from flask_cors import CORS
+from flask_cors import cross_origin
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
-CORS(app, resources={r"/search": {"origins": "https://inquisitive-bunny-f80acf.netlify.app/"}, r"/": {"origins": "*"}})
+# CORS(app, resources={r"/search": {"origins": "https://inquisitive-bunny-f80acf.netlify.app/"}, r"/": {"origins": "*"}})
 
 filehandler = open(Path("./trained_models/bm25_model.obj"), "rb")
 bm25_model = pickle.load(filehandler)
@@ -22,6 +22,7 @@ def home():
 
 
 @app.route("/search", methods=["GET"])
+@cross_origin(origins=["https://inquisitive-bunny-f80acf.netlify.app"])
 def search():
     query = request.args["query"]
 
