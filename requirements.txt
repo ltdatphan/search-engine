@@ -4,7 +4,7 @@ autopep8==1.7.0
 backcall==0.2.0
 beautifulsoup4==4.11.1
 black==22.10.0
-bz2file=0.98
+bz2file==0.98
 certifi==2022.9.24
 charset-normalizer==2.1.1
 click==8.1.3
