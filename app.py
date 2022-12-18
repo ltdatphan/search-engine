@@ -10,9 +10,15 @@ app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 # CORS(app, resources={r"/search": {"origins": "https://inquisitive-bunny-f80acf.netlify.app/"}, r"/": {"origins": "*"}})
 
-filehandler = open(Path("./trained_models/bm25_model.obj"), "rb")
+# filehandler = open(Path("./trained_models/bm25_model.obj"), "rb")
+# bm25_model = pickle.load(filehandler)
+# filehandler = open(Path("./trained_models/nb_model.obj"), "rb")
+# nb_model = pickle.load(filehandler)
+
+# New corpus:
+filehandler = open(Path("./trained_models/bm25_model_500.obj"), "rb")
 bm25_model = pickle.load(filehandler)
-filehandler = open(Path("./trained_models/nb_model.obj"), "rb")
+filehandler = open(Path("./trained_models/nb_model_500.obj"), "rb")
 nb_model = pickle.load(filehandler)
 
 
