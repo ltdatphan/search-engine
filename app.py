@@ -5,6 +5,7 @@ from pathlib import Path
 from BM25_custom import BM25OkapiCustom
 from helper import tokenize, remove_stopword
 from flask_cors import cross_origin
+import bz2file as bz2
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -15,11 +16,11 @@ app.config["DEBUG"] = True
 # filehandler = open(Path("./trained_models/nb_model.obj"), "rb")
 # nb_model = pickle.load(filehandler)
 
-# New corpus:
-filehandler = open(Path("./trained_models/bm25_model_500.obj"), "rb")
-bm25_model = pickle.load(filehandler)
-filehandler = open(Path("./trained_models/nb_model_500.obj"), "rb")
-nb_model = pickle.load(filehandler)
+# Reading the compressed model
+compressed_bm25_model = bz2.BZ2File("./trained_models/compressed_bm25_model.pbz2", "rb")
+bm25_model = pickle.load(compressed_bm25_model)
+compressed_nb_model = bz2.BZ2File("./trained_models/compressed_nb_model.pbz2", "rb")
+nb_model = pickle.load(compressed_nb_model)
 
 
 @app.route("/", methods=["GET"])
@@ -67,7 +68,7 @@ def search_scores():
 
     # Get the top 5 most relevant categories and their scores
     relevant_topics_list = sorted(zip(nb_model.classes_, res[0]), key=lambda x: x[1], reverse=True)[:5]
-    print(relevant_topics_list)
+
     # Only extract the text of the 5 most relevant categories
     relevant_topics = []
     for topic in relevant_topics_list:
