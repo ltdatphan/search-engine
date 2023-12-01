@@ -5,7 +5,7 @@ from pathlib import Path
 from BM25_custom import BM25OkapiCustom
 from helper import tokenize, remove_stopword
 from flask_cors import cross_origin
-import bz2file as bz2
+# import bz2file as bz2
 from pathlib import Path
 
 app = flask.Flask(__name__)
