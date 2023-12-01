@@ -6,6 +6,7 @@ from BM25_custom import BM25OkapiCustom
 from helper import tokenize, remove_stopword
 from flask_cors import cross_origin
 import bz2file as bz2
+from pathlib import Path
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -17,10 +18,16 @@ app.config["DEBUG"] = True
 # nb_model = pickle.load(filehandler)
 
 # Reading the compressed model
-compressed_bm25_model = bz2.BZ2File("./trained_models/compressed_bm25_model.pbz2", "rb")
-bm25_model = pickle.load(compressed_bm25_model)
-compressed_nb_model = bz2.BZ2File("./trained_models/compressed_nb_model.pbz2", "rb")
-nb_model = pickle.load(compressed_nb_model)
+# compressed_bm25_model = bz2.BZ2File("./trained_models/compressed_bm25_model.pbz2", "rb")
+# bm25_model = pickle.load(compressed_bm25_model)
+# compressed_nb_model = bz2.BZ2File("./trained_models/compressed_nb_model.pbz2", "rb")
+# nb_model = pickle.load(compressed_nb_model)
+
+# Smaller models
+filehandler = open(Path("./trained_models/bm25_model.obj"), "rb")
+bm25_model = pickle.load(filehandler)
+filehandler = open(Path("./trained_models/nb_model.obj"), "rb")
+nb_model = pickle.load(filehandler)
 
 
 @app.route("/", methods=["GET"])

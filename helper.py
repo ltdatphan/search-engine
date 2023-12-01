@@ -1,5 +1,5 @@
 # import gzip
-# from pathlib import Path
+from pathlib import Path
 from string import punctuation
 # from bs4 import BeautifulSoup
 # import json
