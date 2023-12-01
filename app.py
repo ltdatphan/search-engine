@@ -29,7 +29,7 @@ def home():
 
 
 @app.route("/search", methods=["GET"])
-@cross_origin(origins=["https://inquisitive-bunny-f80acf.netlify.app", "http://localhost:3000"])
+@cross_origin(origins=["https://search-engine-cps842.netlify.app/", "http://localhost:3000"])
 def search():
     query = request.args["query"]
 
