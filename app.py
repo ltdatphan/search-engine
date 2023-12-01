@@ -36,7 +36,7 @@ def home():
 
 
 @app.route("/search", methods=["GET"])
-@cross_origin(origins=["https://search-engine-cps842.netlify.app/"])
+@cross_origin(origins=["https://search-engine-cps842.netlify.app"])
 def search():
     query = request.args["query"]
 
